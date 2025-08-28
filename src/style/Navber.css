@@ -1,0 +1,24 @@
+
+.navber-links a{
+margin-right: 20px;
+text-decoration: none;
+color: white;
+font-size: 18px;
+}
+
+.navber-links a:hover{
+  color: #00ADB5;
+  transition: 0.3s;
+}
+
+.navber-link-login:hover{
+  background-color: #A8E063;
+  color: black;
+  transition: 0.3s;
+}
+
+.avber-link-get-started:hover{
+  background-color: white;
+  color: #00ADB5;
+  transition: 0.3s;
+}
