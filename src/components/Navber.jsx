@@ -1,17 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "../style/Navber.css"
 import NavberLogo from "../assets/intelliboi-logo2.png"
 import { NavLink } from "react-router-dom";
 
 
 export default function Navber() {
- const links = [
-   { path: "/home", label: "Home" },
-   { path: "/features", label: "Features" },
-   { path: "/pricing", label: "Pricing" },
-   { path: "/contact", label: "Contact" },
-   { path: "/about", label: "About" },
- ];
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  
+  const links = [
+    { path: "/home", label: "Home" },
+    { path: "/features", label: "Features" },
+    { path: "/pricing", label: "Pricing" },
+    { path: "/contact", label: "Contact" },
+    { path: "/about", label: "About" },
+  ];
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
  
   return (
     <div
@@ -30,20 +36,22 @@ export default function Navber() {
       </div>
 
       <div
-        className="navber-links"
-        style={{ display: "flex", gap: "20px", alignItems: "center" }}
+        className={`navber-links ${isMobileMenuOpen ? "mobile-menu-open" : ""}`}
+        
       >
-        {links.map(({ path, label, className }) => (
-          <NavLink
-            key={path}
-            to={path}
-            className={({ isActive }) =>
-              `${className || ""} ${isActive ? "active-link" : ""}`
-            }
-          >
-            {label}
-          </NavLink>
-        ))}
+        <div className="desktop-nav">
+          {links.map(({ path, label, className }) => (
+            <NavLink
+              key={path}
+              to={path}
+              className={({ isActive }) =>
+                `${className || ""} ${isActive ? "active-link" : ""}`
+              }
+            >
+              {label}
+            </NavLink>
+          ))}
+        </div>
 
         <div
           className="navber-buttons"
@@ -77,12 +85,15 @@ export default function Navber() {
             Get Started
           </button>
         </div>
-
-        <div className="hambuger">
-          <div className="line"></div>
-          <div className="line"></div>
-          <div className="line"></div>
-        </div>
+      </div>
+      
+      <div
+        className={`hamburger-toggle ${isMobileMenuOpen ? "open" : ""}`}
+        onClick={toggleMobileMenu}
+      >
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
     </div>
   );
